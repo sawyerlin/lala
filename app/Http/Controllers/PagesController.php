@@ -10,7 +10,7 @@ class PagesController extends Controller {
     return View('pages.home', compact('name', 'lessons'));
   }
 
-  public function about(){
+  public function about() {
     return View('pages.about');
   }
 }

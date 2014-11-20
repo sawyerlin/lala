@@ -15,6 +15,10 @@ $router->get('/', 'PagesController@index');
 
 $router->get('/about', 'PagesController@about');
 
+$router->get('/songs', 'SongsController@index');
+$router->get('/songs/{id}', 'SongsController@show');
+
+
 /*
 |--------------------------------------------------------------------------
 | Authentication & Password Reset Controllers
