@@ -11,13 +11,24 @@
 |
 */
 
-$router->get('/', 'PagesController@index');
+Route::bind('songs', function($slug) {
+  return App\Song::whereSlug($slug)->first();
+});
 
-$router->get('/about', 'PagesController@about');
 
-$router->get('/songs', 'SongsController@index');
-$router->get('/songs/{id}', 'SongsController@show');
-
+$router->resource('songs', 'SongsController', [
+  'names' => [
+    'index' => 'allSongs',
+    'show' => 'oneSong',
+    'edit' => 'editSong',
+    'update' => 'updateSong',
+    'create' => 'createSong',
+    'store' => 'storeSong'
+  ],
+  'only' => [
+    'index', 'show', 'edit', 'update', 'create', 'store'
+  ]
+]);
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +41,6 @@ $router->get('/songs/{id}', 'SongsController@show');
 |
 */
 
-$router->controller('auth', 'AuthController');
+/*$router->controller('auth', 'AuthController');*/
 
-$router->controller('password', 'PasswordController');
+/*$router->controller('password', 'PasswordController');*/

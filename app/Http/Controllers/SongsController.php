@@ -1,22 +1,39 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use DB;
+use App\Song;
+use Illuminate\Http\Request;
 
 class SongsController extends Controller {
 
-  public function index() {
-    $songs = $this->getSongs()->get();
+  public function index(Song $song) {
+    $songs = $song->get();
     return View('songs.song', compact('songs'));
   }
 
-  public function show($id) {
-    $song = $this->getSongs()->find($id);
+  public function show(Song $song) {
     return View('songs.show', compact('song'));
   }
 
-  private function getSongs() {
-    $songs = DB::table('songs');
-    return $songs;
+  public function edit(Song $song) {
+    return View('songs.edit', compact('song'));
+    //return 'Edit the song with a title of '.$song->title;
+  }
+
+  public function update(Song $song, Request $request) {
+
+    $song->fill($request->input())->save();
+
+    return redirect('songs');
+  }
+
+  public function create() {
+  
+    return View('songs.create');
+  }
+
+  public function store(Request $request, Song $song) {
+    $song->create($request->all());
+    return redirect('songs');
   }
 }

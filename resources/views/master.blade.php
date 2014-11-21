@@ -1,6 +1,11 @@
 <html>
-  <head></head>
+  <head>
+    {!! Html::style('bower_components/bootstrap/dist/css/bootstrap.min.css') !!}
+  </head>
   <body>
-    @yield('content')
+    <div class="container">
+      <h1>album of justin bibier</h1>
+      @yield('content')
+    </div>
   </body>
 </html>
