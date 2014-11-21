@@ -10,4 +10,6 @@
 
   {!! Form::close() !!}
 
+  {!! delete_form(['deleteSong', $song->slug]) !!}
+
 @stop

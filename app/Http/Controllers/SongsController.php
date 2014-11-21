@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Song;
-use Illuminate\Http\Request;
+use App\Http\Requests\CreateSongRequest;
 
 class SongsController extends Controller {
 
@@ -20,11 +20,11 @@ class SongsController extends Controller {
     //return 'Edit the song with a title of '.$song->title;
   }
 
-  public function update(Song $song, Request $request) {
+  public function update(CreateSongRequest $song, Request $request) {
 
     $song->fill($request->input())->save();
 
-    return redirect('songs');
+    return redirect()->route('allSongs');
   }
 
   public function create() {
@@ -32,8 +32,13 @@ class SongsController extends Controller {
     return View('songs.create');
   }
 
-  public function store(Request $request, Song $song) {
+  public function store(CreateSongRequest $request, Song $song) {
     $song->create($request->all());
-    return redirect('songs');
+    return redirect()->route('allSongs');
+  }
+
+  public function destroy(Song $song) {
+    $song->delete();
+    return redirect()->route('allSongs');
   }
 }

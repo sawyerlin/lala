@@ -23,10 +23,11 @@ $router->resource('songs', 'SongsController', [
     'edit' => 'editSong',
     'update' => 'updateSong',
     'create' => 'createSong',
-    'store' => 'storeSong'
+    'store' => 'storeSong',
+    'destroy' => 'deleteSong'
   ],
   'only' => [
-    'index', 'show', 'edit', 'update', 'create', 'store'
+    'index', 'show', 'edit', 'update', 'create', 'store', 'destroy'
   ]
 ]);
 
